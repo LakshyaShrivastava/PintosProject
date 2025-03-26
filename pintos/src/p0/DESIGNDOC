@@ -1,0 +1,46 @@
+			+-------------------------+
+			|      CompSci 143A       |
+			| PROJECT 0: Getting Real |
+			|     DESIGN DOCUMENT     |
+			+-------------------------+
+				   
+---- AUTHOR ----
+Lakshya Shrivastava <lshrivas@uci.edu>
+
+---- PRELIMINARIES ----
+Used "The C Programming Language" by Kernighan and Ritchie for C syntax help.
+			     
+                 
+                 Booting Pintos
+			     ==============
+
+---- QUESTIONS ---- 
+>> Put the screenshots of Pintos running in src/p0.
+>> A1: Is there any particular issue that you would like us to know?
+    
+	No, I believe it is working as intended.
+
+			     Kernel Monitor
+			     ==============
+
+---- DATA STRUCTURES ----
+ 
+>> C1: Copy here the declaration of each new or changed `struct' or
+>> `struct' member, global or static variable, `typedef', or
+>> enumeration.  Identify the purpose of each in 25 words or less.
+    
+	Didn't need to change any struct, struct member, global or static variable.
+    The only change is in the threads/init.c file where I added a kernel_shell(void)
+    function. I then call this function on line 137 in the else condition of the block
+	that checks whether any arguments were recieved when the user called pintos.
+
+---- ALGORITHMS ----
+>> C2: Explain how you read and write to the console for the kernel monitor.
+
+	I used printf() from src/lib/stdio.c to write to console. For reading I use input_getc() in a loop until we receive '/n'.
+
+>> C3: Any additional enhancement you implement?
+
+	Currently I'm using a hard coded buffer of 256 because most commands are unlikely to be much longer. When we are at the max limit, my code ignores that rest of the command and only attempts to parse the portion that fit. If needed in the future we can use malloc to allow commands of any length to be handled. Furthermore, I handled backspaces in my code 
+	for user convinience when using the shell by looking for \b or ASCII char 127 (delete char)
+	and printing that to the console. 
